@@ -10,4 +10,5 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan(basePackages = "pl.bookapi")
 public class AppConfig implements WebMvcConfigurer {
 
+
 }
