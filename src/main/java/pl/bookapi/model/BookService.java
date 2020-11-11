@@ -7,7 +7,7 @@ public interface BookService {
 
     List<Book> getAllBooks();
 
-    Book getOneBook(Long id);
+    Optional<Book> getOneBook(Long id);
 
     void addBook(Book book);
 

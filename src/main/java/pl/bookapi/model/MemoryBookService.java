@@ -19,9 +19,9 @@ public class MemoryBookService implements BookService {
     public MemoryBookService() {
         Author author = new Author("Bruce", "Eckel", LocalDate.of(1963, 4, 5));
 
-        bookList.add(new Book(1L, "9788324631766", "Thiniking in Java", new Author("Bruce", "Eckel", LocalDate.of(1963, 5, 4)), "Helion", "programming"));
-        bookList.add(new Book(2L, "9788324627738", "Rusz glowa Java.", new Author("Kathy", "Sierra", LocalDate.of(1963, 06, 05)), "Helion", "programming"));
-        bookList.add(new Book(3L, "9780130819338", "Java 2. Podstawy", new Author("Gary", "Horstman", LocalDate.of(1939, 1, 5)), "Helion", "programming"));
+//        bookList.add(new Book(1L, "9788324631766", "Thiniking in Java", new Author("Bruce", "Eckel", LocalDate.of(1963, 5, 4)), "Helion", "programming"));
+//        bookList.add(new Book(2L, "9788324627738", "Rusz glowa Java.", new Author("Kathy", "Sierra", LocalDate.of(1963, 06, 05)), "Helion", "programming"));
+//        bookList.add(new Book(3L, "9780130819338", "Java 2. Podstawy", new Author("Gary", "Horstman", LocalDate.of(1939, 1, 5)), "Helion", "programming"));
     }
 
     @Override
@@ -30,17 +30,8 @@ public class MemoryBookService implements BookService {
     }
 
     @Override
-    public Book getOneBook(Long id) {
-        boolean exits = false;
-
-        for (Book book : bookList) {
-            if (book.getId().equals(id)) {
-                exits = true;
-                return book;
-            }
-        }
-        throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "nie ma takiej książki");
+    public Optional<Book> getOneBook(Long id) {
+        return bookList.stream().filter(item -> item.getId().equals(id)).findFirst();
     }
 
     @Override
